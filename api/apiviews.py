@@ -6,6 +6,7 @@ from rest_framework import generics
 from django.contrib.auth import authenticate
 
 from .permissions import IsOwner
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Producto, Categoria, SubCategoria
 from .serializers import ProductoSerializer,CategoriaSerializer, \
@@ -69,7 +70,7 @@ class SubcategoriaAdd(APIView):
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
-    permission_classes = [IsOwner]
+    permission_classes = ([IsAuthenticated,IsOwner])
 
 class UserCreate(generics.CreateAPIView):
     authentication_classes = ()
