@@ -36,6 +36,16 @@ class CategoriaList(generics.ListCreateAPIView):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
 
+#class SubCategoriaList(generics.ListCreateAPIView):
+#    queryset = SubCategoria.objects.all()
+#    serializer_class = SubCategoriaSerializer
+
+class CategoriaDetail(generics.RetrieveDestroyAPIView):
+    queryset = Categoria.objects.all()
+    serializer_class = CategoriaSerializer
+
 class SubCategoriaList(generics.ListCreateAPIView):
-    queryset = SubCategoria.objects.all()
+    def get_queryset(self):
+        queryset = SubCategoria.objects.filter(categoria_id = self.kwargs["pk"])
+        return queryset
     serializer_class = SubCategoriaSerializer
