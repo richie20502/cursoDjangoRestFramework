@@ -1,5 +1,6 @@
-#from rest_framework.views import APIView
-#from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 #from django.shortcuts import get_object_or_404
 from rest_framework import generics
 
@@ -49,3 +50,14 @@ class SubCategoriaList(generics.ListCreateAPIView):
         queryset = SubCategoria.objects.filter(categoria_id = self.kwargs["pk"])
         return queryset
     serializer_class = SubCategoriaSerializer
+
+class SubcategoriaAdd(APIView):
+    def post(self, request, cat_pk):
+        descripcion = request.data.get("descripcion")
+        data = {"categoria":cat_pk, "descripcion": descripcion}
+        serializer = SubCategoriaSerializer(data=data)
+        if serializer.is_valid():
+            subcat = serializer.save()
+            return Response(serializer.data, status= status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)

@@ -8,4 +8,6 @@ urlpatterns = [
     path('v1/categorias/<int:pk>',CategoriaDetail.as_view(), name='categoria_detalle'),
     path('v1/categorias/<int:pk>/subcategorias/',SubCategoriaList.as_view(), name='sc_list'),
 
+    path('v1/categorias/<int:cat_pk>/addsubcategorias/',SubcategoriaAdd.as_view(), name='sc_add'),
+
 ]
