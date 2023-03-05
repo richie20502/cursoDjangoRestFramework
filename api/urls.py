@@ -13,6 +13,7 @@ urlpatterns = [
     path('v1/categorias/<int:pk>/subcategorias/',SubCategoriaList.as_view(), name='sc_list'),
 
     path('v1/categorias/<int:cat_pk>/addsubcategorias/',SubcategoriaAdd.as_view(), name='sc_add'),
+    path('v3/usuarios/', UserCreate.as_view(), name='usuario_crear')
 
 ]
 

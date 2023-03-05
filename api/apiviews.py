@@ -5,7 +5,8 @@ from rest_framework import status, viewsets
 from rest_framework import generics
 
 from .models import Producto, Categoria, SubCategoria
-from .serializers import ProductoSerializer,CategoriaSerializer, SubCategoriaSerializer
+from .serializers import ProductoSerializer,CategoriaSerializer, \
+SubCategoriaSerializer, UserSerializer
 
 #class ProductoList(APIView):
 #    def get(self, request):
@@ -65,3 +66,8 @@ class SubcategoriaAdd(APIView):
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
+
+class UserCreate(generics.CreateAPIView):
+    authentication_classes = ()
+    permission_classes = ()
+    serializer_class = UserSerializer
