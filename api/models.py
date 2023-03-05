@@ -1,6 +1,11 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
+class OwnerModel(models.Model):
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    
+
 
 class Categoria(models.Model):
     descripcion = models.CharField(
