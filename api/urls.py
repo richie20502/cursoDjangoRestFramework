@@ -2,6 +2,11 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
 
+from rest_framework_swagger.views import get_swagger_view
+schema_view = get_swagger_view(
+    title='Restful Api Curso'
+)
+
 from api.apiviews import *
 
 router = DefaultRouter()
@@ -18,6 +23,7 @@ urlpatterns = [
     path('v3/usuarios/', UserCreate.as_view(), name='usuario_crear'),
     path('v4/login/', LoginView.as_view(), name='login'),
     path('v4/login-drf/', views.obtain_auth_token, name='login_drf'),
+    path('swagger-docs/',schema_view),
 
 ]
 
